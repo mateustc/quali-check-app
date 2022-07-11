@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  base_uri: 'https://dropcode.ngrok.io/v1/api',
+  base_uri: 'http://supply-cube.vps-kinghost.net:3000/api/v1',
   firebase: {
     apiKey: 'YOUR_API_KEY',
     authDomain: 'smartmedpwa.firebaseapp.com',
