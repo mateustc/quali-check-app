@@ -1,0 +1,114 @@
+// http://ionicframework.com/docs/theming/
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+ion-app {
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+ion-label,
+ion-toolbar,
+ion-item {
+  color: #00401A !important;
+  font-size: 19px !important;
+}
+
+ion-item {
+  --background: transparent !important;
+  .ion-focused {
+    background: transparent !important;
+  }
+}
+
+.button-header {
+  background: #00401A;
+  color: #f6f7fb;
+}
+
+ion-split-pane {
+  --border: 0px !important;
+}
+
+.header-md:after {
+  left: 0;
+  bottom: -5px;
+  background-position: left 0 top -2px;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background-image: none;
+  background-repeat: repeat-x;
+  content: "";
+}
+
+ion-toolbar{
+  ion-title{
+    font-size: 23px !important;
+  }
+  ion-buttons {
+    ion-menu-button{
+      font-size: 40px !important;
+    }
+  }
+}
+
+ion-avatar {
+  margin-right: 20px !important;
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.toolbar-tab {
+  background: #e4e6ed;
+  margin-top: 30px;
+  ion-segment {
+    height: 44px;
+    background: #f6f7fb;
+    padding: 0px;
+
+    .segment-button-checked {
+      background: #e4e6ed;
+      color: #00401A;
+      border-bottom: 3px solid #00401A;
+    }
+
+    ion-segment-button {
+      font-size: 16px;
+      color: #00401A;
+      background: #f6f7fb;
+      border: 0px;
+      border-radius: 0px;
+    }
+  }
+}
+
+.invalido {
+  display: flex;
+  width: 100%;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 16px;
+  color: #c04242;
+  margin-left: 15px;
+}
+
+
+ion-input,
+ion-selec,
+ion-textarea {
+  color: #3d4141 !important;
+}

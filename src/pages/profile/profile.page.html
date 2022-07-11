@@ -1,0 +1,128 @@
+<ion-header>
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col>
+            <img src="{{usuario?.foto}}">
+            <h6>{{usuario?.nome}}</h6>
+            <p>{{usuario?.email}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-list-header>
+            <h1>DADOS GERAIS</h1>
+          </ion-list-header>
+
+          <form [formGroup]="dadosGeraisForm">
+
+            <ion-item>
+              <ion-label position="floating">Nome</ion-label>
+              <ion-input formControlName="nome" type="text"></ion-input>
+            </ion-item>
+            <div class="invalido" *ngIf="dadosGeraisForm.get('nome').touched && 
+                         dadosGeraisForm.get('nome').hasError('required')">
+              Nome é obrigatório
+            </div>
+
+            <ion-item>
+              <ion-label position="floating">Data Nascimento</ion-label>
+              <ion-datetime displayFormat="DD/MM/YYYY" formControlName="dataNascimento" cancelText="Fechar"
+                doneText="OK">
+              </ion-datetime>
+            </ion-item>
+            <div class="invalido" *ngIf="dadosGeraisForm.get('dataNascimento').touched && 
+                          dadosGeraisForm.get('dataNascimento').hasError('required')">
+              Data Nascimento é obrigatório
+            </div>
+
+            <ion-item>
+              <ion-label position="floating">Sexo</ion-label>
+              <ion-select formControlName="sexo" interface="popover">
+                <ion-select-option value="Feminino">Feminino</ion-select-option>
+                <ion-select-option value="Masculino">Masculino</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <div class="invalido" *ngIf="dadosGeraisForm.get('sexo').touched && 
+                         dadosGeraisForm.get('sexo').hasError('required')">
+              Sexo é obrigatório
+            </div>
+
+            <ion-item>
+              <ion-label position="floating">Profissão</ion-label>
+              <ion-input formControlName="profissao" type="text"></ion-input>
+            </ion-item>
+
+            <!-- <ion-item>
+              <ion-label position="floating">Informações</ion-label>
+              <ion-textarea formControlName="bio" rows="4" cols="20"></ion-textarea>
+            </ion-item> -->
+
+          </form>
+
+        </ion-list>
+
+        <ion-list>
+
+          <ion-list-header>
+            <h1>ENDEREÇOS</h1>
+            <ion-button (click)="abrirFormEndereco()" fill="clear" shape="round" size="large">
+              <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+            </ion-button>
+          </ion-list-header>
+
+          <ion-card *ngIf="usuario?.enderecos.length !== 0">
+            <ion-card-content>
+              <ion-item *ngFor="let endereco of usuario.enderecos; let i = index">
+                <ion-label>
+                  <h6>{{endereco.tipoEndereco}}</h6>
+                  <p>{{endereco.logradouro}} - {{endereco.numero}}</p>
+                  <p>{{endereco.cep}} - {{endereco.bairro}}</p>
+                  <p>{{endereco.cidade}} - {{endereco.uf}}</p>
+                </ion-label>
+                <ion-button fill="clear" (click)="deleteEndereco(i)" color="danger" size="default">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-button>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+
+        </ion-list>
+
+        <ion-list>
+
+          <ion-list-header>
+            <h1>CONTATOS</h1>
+            <ion-button (click)="abrirFormContato()" fill="clear" shape="round" size="large">
+              <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+            </ion-button>
+          </ion-list-header>
+
+          <ion-card *ngIf="usuario?.contatos.length !== 0">
+            <ion-card-content>
+              <ion-item *ngFor="let contato of usuario.contatos; let i = index">
+                <ion-label>
+                  <h6>{{contato.tipoContato}}</h6>
+                  <p>{{contato.valor}}</p>
+                </ion-label>
+                <ion-button fill="clear" color="danger" size="default" (click)="deleteContato(i)">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-button>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+
+        </ion-list>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,70 @@
+<ion-header >
+    <ion-toolbar>
+        <ion-title>Dados da Instituição</ion-title>
+        <ion-buttons slot="end">
+            <ion-button fill="clean" size="small" (click)="close()">
+                <ion-icon name="close-circle" color="danger" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <form [formGroup]="form">
+        <div padding>
+          <ion-item style="margin-bottom: 10px;">
+            <ion-label position="floating">
+              Nome *
+            </ion-label>
+            <ion-input type="text" formControlName="nome"></ion-input>
+          </ion-item>
+          <p ion-text *ngIf="form.get('nome').touched && form.get('nome').hasError('required')">
+            <ion-text class="text-error">
+              Nome é obrigatório
+            </ion-text>
+          </p>
+
+          <ion-item style="margin-bottom: 10px;">
+            <ion-label position="floating">
+                Nome do Diretor Geral
+            </ion-label>
+            <ion-input type="text" formControlName="nomeDiretorGeral"></ion-input>
+          </ion-item>
+
+          <ion-item style="margin-bottom: 10px;">
+            <ion-label position="floating">
+                Serviço
+            </ion-label>
+            <ion-input type="text" formControlName="servico"></ion-input>
+          </ion-item>
+
+          <ion-item style="margin-bottom: 10px;">
+            <ion-label position="floating">
+                Endereço
+            </ion-label>
+            <ion-input type="text" formControlName="endereco"></ion-input>
+          </ion-item>
+
+          <ion-item style="margin-bottom: 10px;">
+            <ion-label position="floating">
+                Município
+            </ion-label>
+            <ion-input type="text" formControlName="municipio"></ion-input>
+          </ion-item>
+
+          <ion-item style="margin-bottom: 10px;">
+            <ion-label position="floating">
+              Telefone
+            </ion-label>
+            <ion-input type="text" formControlName="telefone"></ion-input>
+          </ion-item>
+        </div>
+    </form>
+</ion-content>
+
+<ion-footer collapse="fade">
+  <ion-toolbar>
+      <ion-button (click)="salvar()" slot="start" size="medium">Atualizar</ion-button>
+      <ion-button (click)="abrirNiveis()" fill="outline" slot="start" size="medium">Escolher Nível</ion-button>
+  </ion-toolbar>
+</ion-footer>

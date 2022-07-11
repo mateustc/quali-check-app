@@ -1,0 +1,47 @@
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-align-self-center" size-sm="8" size-md="6" size-lg="3" size-xs="11">
+        <div class="ion-text-center">
+          <div class="ion-justify-content-center" class="logo"></div>
+        </div>
+        <form [formGroup]="recuperarSenhaForm">
+          <div padding>
+
+            <ion-item style="margin-bottom: 10px;">
+              <ion-label position="floating">
+                Email
+              </ion-label>
+              <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+            <div class="invalido" *ngIf="recuperarSenhaForm.get('email').hasError('required') && 
+                                         recuperarSenhaForm.get('email').touched ">
+              Email é obrigatório
+            </div>
+            <div class="invalido" *ngIf="recuperarSenhaForm.get('email').hasError('email') && 
+                                         recuperarSenhaForm.get('email').touched ">
+              Email está inválido
+            </div>
+          </div>
+
+          <ion-button type="submit" icon-left size="medium" expand="full" shape="round" color="primary"
+              [disabled]="!recuperarSenhaForm.valid" (click)="recuperarSenha()">
+              Recuperar Senha
+            </ion-button>
+        </form>
+
+        <div>
+
+          <div class="ion-text-center ion-margin-top ion-padding">
+            <span (click)="abrirFormLogin()" tappable>
+              <ion-text>
+                <strong style="color: #43a047">Login</strong>
+              </ion-text>
+            </span>
+          </div>
+
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

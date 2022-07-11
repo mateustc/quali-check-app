@@ -1,0 +1,209 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Usuário</ion-title>
+  </ion-toolbar>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="salvarUsuario()">
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-toolbar class="toolbar-tab" mode="ios">
+    <!-- <div class="profile">
+      <ion-card>
+        <ion-card-content>
+          <img src="{{fotoUsuario}}">
+        </ion-card-content>
+      </ion-card>
+    </div> -->
+    <ion-segment [(ngModel)]="segmentIndex">
+      <ion-segment-button value="0" (click)="showForm(0)">
+        <ion-icon name="person"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="1" (click)="showForm(1)">
+        <ion-icon name="list-box"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="2" (click)="showForm(2)">
+        <ion-icon name="lock"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="ion-padding">
+
+    <form [formGroup]="dadosGeraisForm" [hidden]="hiddenForms[0]">
+
+      <ion-list no-margin>
+
+        <ion-item>
+          <ion-label position="floating">Perfil</ion-label>
+          <ion-select formControlName="perfil" interface="popover">
+            <ion-select-option value="ADMIN">ADMIN</ion-select-option>
+            <ion-select-option value="CLIENTE">CLIENTE</ion-select-option>
+            <ion-select-option value="PADRAO">PADRAO</ion-select-option>
+            <ion-select-option value="PROFISSIONAL">PROFISSIONAL</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="invalido" *ngIf="dadosGeraisForm.get('perfil').touched && 
+                 dadosGeraisForm.get('perfil').hasError('required')">
+          Perfil é obrigatório
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input formControlName="nome" type="text"></ion-input>
+        </ion-item>
+        <div class="invalido" *ngIf="dadosGeraisForm.get('nome').touched && 
+                   dadosGeraisForm.get('nome').hasError('required')">
+          Nome é obrigatório
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <div class="invalido" *ngIf="dadosGeraisForm.get('email').touched && 
+                                    dadosGeraisForm.get('email').hasError('required')">
+          Email é obrigatório
+        </div>
+        <div class="invalido" *ngIf="dadosGeraisForm.get('email').hasError('email') && 
+              dadosGeraisForm.get('email').touched ">
+          Email está inválido
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <app-show-hide-password>
+            <ion-input type="password" formControlName="senha"></ion-input>
+          </app-show-hide-password>
+        </ion-item>
+        <div class="invalido" *ngIf="dadosGeraisForm.get('senha').hasError('required') && 
+                      dadosGeraisForm.get('senha').touched ">
+          Senha é obrigatório
+        </div>
+        <div class="invalido" *ngIf="dadosGeraisForm.get('senha').hasError('minlength') &&
+                    dadosGeraisForm.get('senha').touched">
+          Senha precisa ter no mínimo 6 caracteres
+        </div>
+
+        <div class="invalido" *ngIf="dadosGeraisForm.get('senha').hasError('maxlength') &&
+                    dadosGeraisForm.get('senha').touched">
+          Senha precisa ter no máximo 12 caracteres
+        </div>
+
+        <div class="invalido" *ngIf="dadosGeraisForm.get('senha').hasError('pattern') &&
+                   dadosGeraisForm.get('senha').touched">
+          Senha deve começar com letra maiúscula, conter números e letras
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Data Nascimento</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" formControlName="dataNascimento" cancelText="Fechar" doneText="OK">
+          </ion-datetime>
+        </ion-item>
+        <div class="invalido" *ngIf="dadosGeraisForm.get('dataNascimento').touched && 
+                    dadosGeraisForm.get('dataNascimento').hasError('required')">
+          Data Nascimento é obrigatório
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Sexo</ion-label>
+          <ion-select formControlName="sexo" interface="popover">
+            <ion-select-option value="Feminino">Feminino</ion-select-option>
+            <ion-select-option value="Masculino">Masculino</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="invalido" *ngIf="dadosGeraisForm.get('sexo').touched && 
+                   dadosGeraisForm.get('sexo').hasError('required')">
+          Sexo é obrigatório
+        </div>
+
+        <ion-item>
+          <ion-label position="fixed">Ativo</ion-label>
+          <ion-toggle slot="end" formControlName="ativo"></ion-toggle>
+        </ion-item>
+        <div class="invalido" *ngIf="dadosGeraisForm.get('ativo').touched && 
+                 dadosGeraisForm.get('ativo').hasError('required')">
+          Ativo é obrigatório
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Profissão</ion-label>
+          <ion-input formControlName="profissao" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Informações</ion-label>
+          <ion-textarea formControlName="bio" rows="6" cols="20"></ion-textarea>
+        </ion-item>
+
+      </ion-list>
+
+    </form>
+
+    <div [hidden]="hiddenForms[1]">
+
+      <ion-list no-margin>
+
+        <ion-list-header>
+          <h1>ENDEREÇOS</h1>
+          <ion-button (click)="abrirFormEndereco()" fill="clear" shape="round" size="large">
+            <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+          </ion-button>
+        </ion-list-header>
+
+        <ion-card *ngIf="enderecos.length !== 0">
+          <ion-card-content>
+            <ion-item *ngFor="let endereco of enderecos; let i = index">
+              <ion-label>
+                <h6>{{endereco.tipoEndereco}}</h6>
+                <p>{{endereco.logradouro}} - {{endereco.numero}}</p>
+                <p>{{endereco.cep}} - {{endereco.bairro}}</p>
+                <p>{{endereco.cidade}} - {{endereco.uf}}</p>
+              </ion-label>
+              <ion-button fill="clear" (click)="deleteEndereco(i)" color="danger" size="default">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-list>
+
+      <ion-list no-margin>
+
+        <ion-list-header>
+          <h1>CONTATOS</h1>
+          <ion-button (click)="abrirFormContato()" fill="clear" shape="round" size="large">
+            <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+          </ion-button>
+        </ion-list-header>
+
+        <ion-card *ngIf="contatos.length !== 0">
+          <ion-card-content>
+            <ion-item *ngFor="let contato of contatos; let i = index">
+              <ion-label>
+                <h6>{{contato.tipoContato}}</h6>
+                <p>{{contato.valor}}</p>
+              </ion-label>
+              <ion-button fill="clear" color="danger" size="default" (click)="deleteContato(i)">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-list>
+
+    </div>
+
+  </div>
+
+</ion-content>

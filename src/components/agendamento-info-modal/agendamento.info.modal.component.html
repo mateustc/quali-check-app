@@ -1,0 +1,94 @@
+<ion-header >
+    <ion-toolbar>
+        <ion-title>Informações</ion-title>
+        <ion-buttons slot="end">
+            <ion-button fill="clean" size="small" (click)="close()">
+                <ion-icon name="close-circle" color="danger" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-card>
+        <ion-card-content>
+            <ion-label>
+                <p style="margin-bottom: 15px">
+                    <span style="font-size: 15px !important;">Situação:</span> 
+                    {{agendamento.status}} 
+                </p>
+
+                <p style="margin-bottom: 15px">
+                    <span style="font-size: 15px !important;">Data:</span> 
+                    {{agendamento.data | date: 'dd/MM/yyyy HH:mm':'UTC'}}
+                </p>
+
+                <p style="margin-bottom: 15px" *ngIf="agendamento.auditorTreinee">
+                    <span style="font-size: 15px !important;">Auditor Treinee:</span> 
+                    {{agendamento.auditorTreinee.nome}} 
+                </p>
+            </ion-label>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-content>
+          <ion-label>
+            <p style="margin-bottom: 15px" *ngIf="agendamento.clinica">
+                <span style="font-size: 15px !important;">Clínica:</span> 
+                {{agendamento.clinica.nome}} 
+            </p>
+
+            <p style="margin-bottom: 15px" *ngIf="agendamento.metodologia">
+                <span style="font-size: 15px !important;">Metodologia:</span> 
+                {{agendamento.metodologia.nome}} 
+            </p>
+
+            <p style="margin-bottom: 15px" *ngIf="agendamento.nivelOna">
+                <span style="font-size: 15px !important;">Nível Ona:</span> 
+                {{agendamento.nivelOna.nome}} 
+            </p>
+
+            <p style="margin-bottom: 15px" *ngIf="agendamento.nivelQMentum">
+                <span style="font-size: 15px !important;">Nível Qmentum:</span> 
+                {{agendamento.nivelQMentum.nome}} 
+            </p>
+
+            <p style="margin-bottom: 15px" *ngIf="agendamento.recurso">
+                <span style="font-size: 15px !important;">Recurso:</span> 
+                {{agendamento.recurso.nome}} 
+            </p>
+
+            <p style="margin-bottom: 15px" *ngIf="agendamento.redePropria">
+                <span style="font-size: 15px !important;">Rede Própria:</span> 
+                {{agendamento.redePropria.nome}} 
+            </p>
+
+            <p style="margin-bottom: 15px" *ngIf="agendamento.redeCredenciada">
+                <span style="font-size: 15px !important;">Rede Credenciada:</span> 
+                {{agendamento.redeCredenciada.nome}} 
+            </p>
+
+            <p style="margin-bottom: 15px" *ngIf="agendamento.medicinaPreventiva">
+                <span style="font-size: 15px !important;">Medicina Preventiva:</span> 
+                {{agendamento.medicinaPreventiva.nome}} 
+            </p>
+
+            <p style="margin-bottom: 15px" *ngIf="agendamento.laboratorioTipo">
+                <span style="font-size: 15px !important;">Tipo Laboratório:</span> 
+                {{agendamento.laboratorioTipo.nome}} 
+            </p>
+
+            <p style="margin-bottom: 15px" *ngIf="agendamento.laboratorioUnidade">
+                <span style="font-size: 15px !important;">Laboratório Unidade:</span> 
+                {{agendamento.laboratorioUnidade.nome}} 
+            </p>
+
+            <p style="margin-bottom: 15px" *ngIf="agendamento.laboratorioAreaApoio">
+                <span style="font-size: 15px !important;">Laboratório Área de Apoio:</span> 
+                {{agendamento.laboratorioAreaApoio.nome}} 
+            </p>
+          </ion-label>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

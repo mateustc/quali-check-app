@@ -1,0 +1,40 @@
+<ion-app>
+    <ion-split-pane contentId="main-content">
+        <ion-menu class="app-sidemenu" contentId="main-content">
+            <ion-content>
+                <ion-row>
+                    <ion-col>
+                        <img src="/assets/images/logo-sm.png">
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-label>
+                            <h2 style="color: white !important">{{(authUser$ | async)?.nome}}</h2>
+                            <p style="color: white !important" >{{(authUser$ | async)?.email}}</p>
+                        </ion-label>
+                    </ion-col>
+                </ion-row>
+                <ion-list>
+                    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+                        <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+                            <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                            <ion-label>
+                                {{p.title}}
+                            </ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item [routerDirection]="'root'" (click)="logout()">
+                            <ion-icon slot="start" name="log-out"></ion-icon>
+                            <ion-label>
+                                Sair
+                            </ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+        <ion-router-outlet id="main-content"></ion-router-outlet>
+    </ion-split-pane>
+</ion-app>

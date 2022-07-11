@@ -1,0 +1,69 @@
+:host {
+  ion-content {
+    --background: url("../../assets/images/ouvidoria.jpg") no-repeat center center / cover;
+    width: 100%;
+    height: 100%;
+
+    .logo {
+      display: inline-flex;
+      margin-top: 15px;
+      background: url("../../assets/images/logo-transparent.png") no-repeat center center / cover;
+      width: 300px;
+      height: 150px;
+    }
+
+    ion-grid {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+
+    ion-row {
+      height: 100%;
+      background: transparent;
+    }
+
+    ion-col {
+      border: none;
+      border-radius: 10%;
+      opacity: 1;
+      background: #f4f5f8d6;
+    }
+
+    ion-label {
+      color: #000;
+      font-size: 25px !important;
+    }
+
+    ion-button {
+      font-weight: 300;
+    }
+
+    ion-item {
+      --ion-item-background: #fff;
+    }
+
+    ion-input {
+      color: #000;
+      font-size: 25px !important;
+    }
+
+    .social-buttons {
+      ion-col {
+        background: transparent;
+      }
+    }
+
+    @media (min-width: 240px) and (max-width: 768px) {
+      ion-grid {
+        background: transparent;
+      }
+      ion-col {
+        border: none;
+        border-radius: 5%;
+        opacity: 1;
+        background: #f6f6f8d6;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<ion-header >
+    <ion-toolbar>
+        <ion-title>Contatos</ion-title>
+        <ion-buttons slot="end">
+            <ion-button fill="clean" size="small" (click)="close()">
+                <ion-icon name="close-circle" color="danger" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list class="ion-padding">
+
+        <app-form-contato [contatos]="contatos"></app-form-contato>
+
+    </ion-list>
+
+</ion-content>

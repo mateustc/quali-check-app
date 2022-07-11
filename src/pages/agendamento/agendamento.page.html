@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agendamentos</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngIf="existeAgendamento()">
+    <ion-card-content>
+      <ion-label>
+        <p style="text-align: center">
+          <ion-icon size="small" name="md-information-circle" style="color: orange; margin-left: 50px;"></ion-icon> 
+          Agendada
+
+          <ion-icon size="small" name="md-information-circle" style="color: green; margin-left: 50px;"></ion-icon> 
+          Em visita
+
+          <ion-icon size="small" name="md-information-circle" style="color: red; margin-left: 50px;"></ion-icon> 
+          Pausada
+
+          <ion-icon size="small" name="md-information-circle" style="color: black; margin-left: 50px;"></ion-icon> 
+          Finalizada
+        </p>
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item *ngFor="let agendamento of agendamentos">
+      <ion-avatar item-start>
+        <ion-button (click)="abrirInformacoes(agendamento)" fill="clear" shape="round" size="medium">
+          <ion-icon [style.color]="setarCorStatus(agendamento)" slot="icon-only" name="md-information-circle"></ion-icon>
+        </ion-button>
+      </ion-avatar>
+      <ion-label>
+        <h6 style="font-size: 14px !important;" *ngIf="agendamento.redePropria">{{agendamento.redePropria.nome}}</h6>
+        <h6 style="font-size: 14px !important;" *ngIf="agendamento.redeCredenciada">{{agendamento.redeCredenciada.nome}}</h6>
+        <p>{{agendamento.data | date: 'dd/MM/yyyy HH:mm':'UTC'}}</p>
+        <p>{{agendamento.auditorTreinee.nome}}</p>
+      </ion-label>
+      
+      <ion-button (click)="abrirDadosInstituicao(agendamento)" fill="outline" slot="end" size="medium">Visitar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngIf="!existeAgendamento()">
+    <ion-card-content>
+      <ion-label>
+        <h6>Nenhum agendamento</h6>
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

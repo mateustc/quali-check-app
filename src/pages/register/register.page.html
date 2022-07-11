@@ -1,0 +1,74 @@
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-align-self-center" size-sm="8" size-md="6" size-lg="3" size-xs="11">
+        <div class="ion-text-center">
+          <div class="ion-justify-content-center" class="logo"></div>
+        </div>
+        <form [formGroup]="registerForm">
+          <div padding>
+
+            <ion-item style="margin-bottom: 10px;">
+              <ion-label position="floating">
+                Nome Completo
+              </ion-label>
+              <ion-input type="text" formControlName="nome"></ion-input>
+            </ion-item>
+            <p ion-text *ngIf="registerForm.get('nome').touched && registerForm.get('nome').hasError('required')">
+              <ion-text class="text-error">
+                Nome é obrigatório
+              </ion-text>
+            </p>
+
+            <ion-item style="margin-bottom: 10px;">
+              <ion-label position="floating">
+                Email
+              </ion-label>
+              <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+            <p ion-text *ngIf="registerForm.get('email').touched && registerForm.get('email').hasError('required')">
+              <ion-text class="text-error">
+                Email é obrigatório
+              </ion-text>
+            </p>
+            <p ion-text *ngIf="registerForm.get('email').touched && registerForm.get('email').hasError('email')">
+              <ion-text class="text-error">
+                Email está inválido
+              </ion-text>
+            </p>
+
+            <ion-item>
+              <ion-label item-start position="floating">
+                Senha
+              </ion-label>
+              <ion-input color="dark" type="password" formControlName="senha"></ion-input>
+            </ion-item>
+            <p ion-text *ngIf="registerForm.get('senha').touched && registerForm.get('senha').hasError('required')">
+              <ion-text class="text-error">
+                Senha é obrigatório
+              </ion-text>
+            </p>
+          </div>
+        </form>
+
+        <div>
+
+          <ion-button icon-left size="medium" expand="full" shape="round" color="primary" (click)="criarConta()"
+            [disabled]="!registerForm.valid" tappable>
+            <ion-icon name="log-in"></ion-icon>
+            Criar Conta
+          </ion-button>
+
+          <div class="ion-text-center ion-margin-top ion-padding">
+            <span (click)="abrirFormLogin()" tappable>
+              <ion-text color="dark">
+                <strong>Já tem conta</strong>
+              </ion-text>
+            </span>
+          </div>
+
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

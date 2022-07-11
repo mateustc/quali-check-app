@@ -1,0 +1,52 @@
+<form [formGroup]="contatosForm">
+
+  <ion-list>
+
+    <ion-radio-group formControlName="tipoContato">
+
+      <ion-label>Tipo Contato</ion-label>
+
+      <ion-item>
+        <ion-label>Celular</ion-label>
+        <ion-radio slot="start" value="CELULAR"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-radio slot="start" value="EMAIL"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Telefone Residencial</ion-label>
+        <ion-radio slot="start" value="TELEFONE_RESIDENCIAL"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Telefone Comercial</ion-label>
+        <ion-radio slot="start" value="TELEFONE_COMERCIAL"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <div class="invalido" *ngIf="contatosForm.get('tipoContato').touched && 
+                        contatosForm.get('tipoContato').hasError('required')">
+      Tipo Contato é obrigatório
+    </div>
+
+    <ion-item>
+      <ion-input formControlName="valor" type="text" placeholder="Insira o contato"></ion-input>
+    </ion-item>
+    <div class="invalido" *ngIf="contatosForm.get('valor').touched && 
+                        contatosForm.get('valor').hasError('required')">
+      Contato é obrigatório
+    </div>
+
+    <ion-toolbar style="margin-top: 20px;">
+      <ion-button type="submit" icon-left size="medium" expand="full" shape="round" color="primary"
+        [disabled]="!contatosForm.valid" (click)="addContato()">
+        <ion-icon name="add"></ion-icon>
+        Adicionar
+      </ion-button>
+    </ion-toolbar>
+
+  </ion-list>
+
+</form>

@@ -1,0 +1,17 @@
+<ion-header >
+    <ion-toolbar>
+        <ion-title>Metodologia Geral</ion-title>
+        <ion-buttons slot="end">
+            <ion-button fill="clean" size="small" (click)="close()">
+                <ion-icon name="close-circle" color="danger" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <h6 style="text-align: center">Escolha o nível:</h6>
+    <ion-item *ngFor="let nivel of niveis" style="padding-top: 20px;">
+        <ion-button style="width: 100%;" (click)="abrirSecoes(nivel)" size="medium">{{nivel.descricao}}</ion-button>
+    </ion-item>
+</ion-content>

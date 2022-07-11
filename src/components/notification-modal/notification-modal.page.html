@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button color="danger" (click)="dismiss()">
+                <span ion-text color="primary" showWhen="ios"></span>
+                <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Notificação</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card class="flat-card-message">
+        <ion-card-header style="padding-left: 0px;">
+            <ion-item lines="none">
+                <ion-avatar item-start style="margin-right: 20px;margin-top: -20px;">
+                    <img src="{{notificacao.remetente.foto}}">
+                </ion-avatar>
+                <ion-label>
+                    <h1 class="user-name">{{notificacao.remetente.nome}}</h1>
+                    <p class="text07">{{notificacao.dataCadastro | date: 'dd/MM/yyyy HH:mm':'UTC'}}</p>
+                    <ion-badge color="primary" slot="end">{{notificacao.situacao}}</ion-badge>
+                </ion-label>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            {{notificacao.descricao}}
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="flat-card-message" *ngIf="!isBloqueada()">
+        <form [formGroup]="notificacaoForm" class="form-default">
+            <h2 class="form-title">Responder {{ notificacao.remetente.nome }}</h2>
+            <ion-item>
+                <ion-label class="form-label" position="floating">Assunto</ion-label>
+                <ion-input formControlName="assunto" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="form-label" position="floating">Descrição</ion-label>
+                <ion-textarea formControlName="descricao" rows="6" cols="20"></ion-textarea>
+            </ion-item>
+            <ion-toolbar>
+                <ion-buttons slot="end">
+                    <ion-button *ngIf="!isSolicitacaoBloqueada()" fill="clear" (click)="aceitar()">
+                        <ion-icon slot="start" name="ios-undo"></ion-icon>
+                        Aceitar
+                    </ion-button>
+                    <ion-button *ngIf="!isSolicitacaoBloqueada()" color="danger" (click)="rejeitar()">Rejeitar
+                    </ion-button>
+                    <ion-button *ngIf="!isSolicitacao()" fill="clear" (click)="notificar()">
+                        <ion-icon slot="end" name="send"></ion-icon>
+                        Enviar
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </form>
+    </ion-card>
+
+
+</ion-content>

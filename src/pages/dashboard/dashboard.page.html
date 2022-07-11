@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{usuario?.foto}}">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{usuario?.nome}}</h2>
+          <p>{{usuario?.email}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row style="margin-top: 20px;" size-xs="12" size-sm="12" size-md="12" size-lg="12">
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12">
+      <ion-item>
+        <ion-label>Data Referência</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" (ngModelChange)="selecionaData($event)"
+          [(ngModel)]="filtros.dataInicialStr" name="filtros.dataInicialStr" cancelText="Fechar" doneText="OK">
+        </ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-justify-center">
+
+    <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6">
+      <ion-card class="welcome-card">
+        <ion-card-header>
+          <ion-card-title>Frequência Cardíaca</ion-card-title>
+          <app-card-meta metaName="Meta" [metaValue]="metaFreqCardiaca?.valor" [metaParamValue]="maxFreqCardiaca?.valor" metaIconColor="danger"></app-card-meta>
+        </ion-card-header>
+        <ion-row class="ion-justify-center">
+          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6">
+            <app-card-counter counterName="Frequência Máxima" [counterValue]="maxFreqCardiaca?.valor"
+              counterIcon="arrow-round-up" [counterDetail]="maxFreqCardiaca?.dataColeta | date: 'dd/MM/yyyy HH:mm'"
+              counterIconColor="red">
+            </app-card-counter>
+          </ion-col>
+          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6">
+            <app-card-counter counterName="Frequência Mínima" [counterValue]="minFreqCardiaca?.valor"
+              counterIcon="arrow-round-down" [counterDetail]="minFreqCardiaca?.dataColeta | date: 'dd/MM/yyyy HH:mm'"
+              counterIconColor="red">
+            </app-card-counter>
+          </ion-col>
+        </ion-row>
+        <ion-card-content>
+          <canvas #freqFreqCardCanvas style="position: relative; height:30vh; width:80vw"></canvas>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6">
+      <ion-card class="welcome-card">
+        <ion-card-header>
+          <ion-card-title>Frequência de Passos</ion-card-title>
+          <app-card-meta metaName="Meta" [metaValue]="metaTotalPassos?.valor" [metaParamValue]="totalPassos?.valor" metaIconColor="danger"></app-card-meta>
+        </ion-card-header>
+        <ion-row class="ion-justify-center">
+          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6">
+            <app-card-counter counterName="Total Passos" [counterValue]="totalPassos?.valor" counterIcon="checkmark"
+              [counterDetail]="" counterIconColor="blue">
+            </app-card-counter>
+          </ion-col>
+          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6">
+            <app-card-counter counterName="Passos/Hora" [counterValue]="passosPorHora?.valor | number:'1.2-2'"
+              counterIcon="walk" counterIconColor="blue">
+            </app-card-counter>
+          </ion-col>
+        </ion-row>
+        <ion-card-content>
+          <canvas #freqPassosCanvas style="position: relative; height:30vh; width:80vw"></canvas>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row class="ion-justify-center">
+
+    <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6">
+      <ion-card class="welcome-card">
+        <ion-card-header>
+          <ion-card-title>Distância Percorrida</ion-card-title>
+          <app-card-meta metaName="Meta" [metaValue]="metaTotalDistancia?.valor" [metaParamValue]="totalDistancia?.valor" metaIconColor="danger"></app-card-meta>
+        </ion-card-header>
+        <ion-row class="ion-justify-center">
+          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6">
+            <app-card-counter counterName="Distância Percorrida" [counterValue]="totalDistancia?.valor"
+              counterIcon="pin" counterIconColor="green">
+            </app-card-counter>
+          </ion-col>
+          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6">
+            <app-card-counter counterName="Metros/Hora" [counterValue]="distanciaPorHora?.valor | number:'1.2-2'"
+              counterIcon="pin" counterIconColor="green">
+            </app-card-counter>
+          </ion-col>
+        </ion-row>
+        <ion-card-content>
+          <canvas #freqDistanciaCanvas style="position: relative; height:30vh; width:80vw"></canvas>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6">
+      <ion-card class="welcome-card">
+        <ion-card-header>
+          <ion-card-title>Calorias</ion-card-title>
+          <app-card-meta metaName="Meta" [metaValue]="metaTotalCalorias?.valor" [metaParamValue]="totalCalorias?.valor" metaIconColor="danger"></app-card-meta>
+        </ion-card-header>
+        <ion-row class="ion-justify-center">
+          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6">
+            <app-card-counter counterName="Total Calorias" [counterValue]="totalCalorias?.valor" counterIcon="flame"
+              [counterDetail]="" counterIconColor="orange">
+            </app-card-counter>
+          </ion-col>
+          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6">
+            <app-card-counter counterName="Calorias/Hora" [counterValue]="caloriasPorHora?.valor | number:'1.2-2'"
+              counterIcon="flame" counterIconColor="orange">
+            </app-card-counter>
+          </ion-col>
+        </ion-row>
+        <ion-card-content>
+          <canvas #freqCaloriasCanvas style="position: relative; height:30vh; width:80vw"></canvas>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+  </ion-row>
+
+</ion-content>

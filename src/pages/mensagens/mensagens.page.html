@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mensagens</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="message-wrap">
+
+    <div *ngFor="let notificacao of notificacoes" class="message"
+      [class.left]=" notificacao.remetente._id === usuario._id "
+      [class.right]=" notificacao.remetente._id === auth.id ">
+
+      <img class="user-img" [src]="notificacao.remetente.foto" alt="">
+
+      <!-- <ion-spinner name="dots" *ngIf="msg.status === 'pending'"></ion-spinner> -->
+
+      <div class="msg-detail">
+
+        <div class="msg-info">
+          <p>
+            {{notificacao.remetente.nome}}&nbsp;&nbsp;&nbsp;{{notificacao.dataCadastro | relativeTime}}</p>
+        </div>
+
+        <div class="msg-content">
+          <span class="triangle"></span>
+          <p class="line-breaker ">{{notificacao.descricao}}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

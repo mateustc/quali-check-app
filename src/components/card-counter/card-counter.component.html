@@ -1,0 +1,6 @@
+<div class="card-counter">
+  <ion-icon name="{{counterIcon}}" [style.color]="_counterIconColor"></ion-icon>
+  <span class="count-numbers">{{counterValue}}</span>
+  <span *ngIf="counterDetail" class="count-detail">{{counterDetail}}</span>
+  <span class="count-name">{{counterName}}</span>
+</div>

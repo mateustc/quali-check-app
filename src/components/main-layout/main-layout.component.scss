@@ -1,0 +1,48 @@
+.app-sidemenu {
+  ion-content {
+    
+    background-image: linear-gradient(315deg, #63d471 0%, #233329 74%);
+    --background: linear-gradient(
+      to right,
+      #315deg, #63d471 0%, #233329 74%
+    );
+
+    ion-row {
+      ion-col {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        
+        p{
+          color: dimgrey;
+        }
+      }
+    }
+
+    ion-list {
+      padding-top: 20px !important;
+      --ion-item-background: transparent;
+
+      ion-menu-toggle {
+        --color: #888da8;
+        text-transform: uppercase;
+
+        ion-item {
+          --border-width: 0px !important;
+          font-weight: 2em;
+          padding-bottom: 10px !important;
+
+          ion-label {
+            color: white !important;
+            font-size: 30px;
+          }
+
+          ion-icon {
+            color: white !important;
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<ion-header >
+    <ion-toolbar>
+        <ion-title>Comentário</ion-title>
+        <ion-buttons slot="end">
+            <ion-button fill="clean" size="small" (click)="close()">
+                <ion-icon name="close-circle" color="danger" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-card>
+        <ion-card-content>
+            <ion-label>
+                <div [innerHTML]="bancoItem.pergunta"></div>
+            </ion-label>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-item>
+        <ion-textarea [(ngModel)]="comentario" rows="6" cols="20" placeholder="Digite o seu comentário.."></ion-textarea>
+    </ion-item>
+</ion-content>
+
+<ion-footer collapse="fade">
+    <ion-toolbar>
+        <ion-button (click)="salvarComentario()" slot="start" size="medium">Salvar</ion-button>
+    </ion-toolbar>
+</ion-footer>

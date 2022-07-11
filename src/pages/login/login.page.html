@@ -1,0 +1,62 @@
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-align-self-center" size-sm="8" size-md="6" size-lg="3" size-xs="11">
+        <div class="ion-text-center">
+          <div class="ion-justify-content-center" class="logo"></div>
+        </div>
+        <form [formGroup]="loginForm" novalidade>
+
+          <div class="ion-padding">
+            <ion-item style="margin-bottom: 10px;">
+              <ion-label position="floating">Email</ion-label>
+              <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+            <div class="invalido" *ngIf="
+                        loginForm.get('email').hasError('required') && 
+                        loginForm.get('email').touched ">
+              Email é obrigatório
+            </div>
+            <div class="invalido" *ngIf="loginForm.get('email').hasError('email') && 
+                        loginForm.get('email').touched ">
+              Email está inválido
+            </div>
+
+            <ion-item>
+              <ion-label item-start position="floating">Senha</ion-label>
+              <app-show-hide-password>
+                <ion-input color="dark" type="password" formControlName="senha"></ion-input>
+              </app-show-hide-password>
+            </ion-item>
+            <div class="invalido" *ngIf="loginForm.get('senha').hasError('required') && 
+                      loginForm.get('senha').touched ">
+              Senha é obrigatório
+            </div>
+            <div class="invalido" *ngIf="(loginForm.get('senha').hasError('minLength') || 
+                                         loginForm.get('senha').hasError('maxLength') ||
+                                         loginForm.get('senha').hasError('pattern')) &&  
+                      loginForm.get('senha').touched ">
+              Senha não obedece as regras de segurança
+            </div>
+          </div>
+
+          <div>
+
+            <ion-button type="submit" icon-left size="medium" expand="full" shape="round" color="primary"
+              [disabled]="!loginForm.valid" (click)="login()">
+              <ion-icon name="log-in"></ion-icon>
+              Login
+            </ion-button>
+
+            <div class="ion-padding ion-text-right" tappable (click)="abrirFormRecuperarSenha()">
+              <ion-text>
+                <strong style="color: #43a047">Esqueceu Senha?</strong>
+              </ion-text>
+            </div>
+
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

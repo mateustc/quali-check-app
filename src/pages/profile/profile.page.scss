@@ -1,0 +1,83 @@
+:host {
+  ion-content {
+    h1 {
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    ion-list {
+      margin-top: 5px;
+
+      ion-list-header {
+        box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), 1px 20px 20px 0px #556aad21;
+        height: 20px;
+      }
+
+      ion-card {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        -webkit-margin-start: 0px !important;
+        margin-inline-start: 0px !important;
+        -webkit-margin-end: 0px !important;
+        margin-inline-end: 0px !important;
+        display: inline !important;
+
+        ion-card-content {
+          background: transparent;
+          height: auto !important;
+          margin-left: 0px !important;
+          margin-right: 0px !important;
+          -webkit-margin-start: 0px !important;
+          margin-inline-start: 0px !important;
+          -webkit-margin-end: 0px !important;
+          margin-inline-end: 0px !important;
+          box-shadow: unset !important;
+        }
+      }
+    }
+  }
+
+  ion-header {
+    background-image: linear-gradient(
+      to right,
+      #ffffff,
+      #fdfdfd,
+      #fafafb,
+      #f8f8fa,
+      #f5f6f8,
+      #eff1f7,
+      #e9ecf5,
+      #e3e7f4,
+      #d7def3,
+      #cbd6f1,
+      #becef0,
+      #b0c6ee
+    );
+    
+    ion-card {
+      width: 100%;
+      border-radius: 0;
+      box-shadow: unset !important;
+
+      ion-card-content {
+        height: 150px;
+        padding: 10px;
+        text-align: center;
+
+        text-align: center;
+        box-shadow: unset !important;
+        -webkit-box-shadow: unset !important;
+
+        img {
+          height: 70px;
+          width: 70px;
+          border-radius: 50%;
+          // margin-top: -100px;
+          border: solid 4px #fff;
+          display: inline;
+          box-shadow: 0 0 28px rgba(255, 255, 255, 0.65);
+        }
+      }
+    }
+  }
+}

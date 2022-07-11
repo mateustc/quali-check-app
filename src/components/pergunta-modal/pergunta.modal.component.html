@@ -1,0 +1,54 @@
+<ion-header >
+    <ion-toolbar>
+        <ion-title>Metodologia Geral</ion-title>
+        <ion-buttons slot="end">
+            <ion-button fill="clean" size="small" (click)="close()">
+                <ion-icon name="close-circle" color="danger" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-card>
+        <ion-card-content>
+            <ion-label>
+                <h6>
+                    {{agendamento?.redePropria?.nome}}
+                    {{agendamento?.redeCredenciada?.nome}}
+                </h6>
+                <p>
+                    {{secao?.nome}}
+                </p>
+            </ion-label>
+            <ion-item>
+                <div>Não se aplica</div>
+                <ion-checkbox slot="start" [(ngModel)]="secao.naoSeAplica" [checked]="secao?.naoSeAplica"></ion-checkbox>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+    <div *ngFor="let bancoItem of secao.bancoItens" style="padding-top: 20px;">
+        <div [innerHTML]="bancoItem.pergunta"></div>
+        <ion-button (click)="abrirComentario(bancoItem)" fill="outline" size="small" [disabled]="secao.naoSeAplica">Comentário</ion-button>
+
+        <ion-radio-group (ionChange)="getOpcao(bancoItem, $event.detail.value)">
+            <ion-item *ngFor="let opcao of bancoItem.opcao">
+                <div [innerHTML]="opcao.descricao"></div>
+                <ion-radio slot="start" [value]="opcao.item" [checked]="opcao.checked" [disabled]="secao.naoSeAplica"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </div>
+</ion-content>
+
+<ion-footer collapse="fade">
+    <ion-toolbar>
+        <ion-button [disabled]="isPrimeiraSecao()" (click)="processarSecao('secaoAnterior')" fill="outline" slot="start" size="medium">Seção Anterior</ion-button>
+        <ion-button [disabled]="isUltimaSecao()" (click)="processarSecao('proximaSecao')" fill="outline" slot="start" size="medium">Próxima Seção</ion-button>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-button (click)="salvar()" slot="start" size="medium">Salvar</ion-button>
+        <ion-button (click)="pausar()" fill="outline" slot="start" size="medium">Pausar</ion-button>
+        <ion-button (click)="finalizar()" fill="outline" slot="start" size="medium">Finalizar</ion-button>
+    </ion-toolbar>
+</ion-footer>
