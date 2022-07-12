@@ -6,10 +6,9 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "ng serve --disable-host-check",
     "start:hmg": "ng serve --disable-host-check",
     "build": "ng build --prod",
-    "build:prod": "NODE_ENV=production ionic build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
