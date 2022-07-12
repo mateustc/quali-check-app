@@ -1,5 +1,14 @@
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './src/app/app.module';
+
 const express = require('express');
 const app = express();
+
+enableProdMode();
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.log(err));
 
 app.use(express.static('src'));
 
