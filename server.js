@@ -1,16 +1,8 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './src/app/app.module';
-
 const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-enableProdMode();
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
-
-app.use(express.static('src'));
+app.use(express.static('www'));
 
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -18,8 +10,6 @@ app.all('*', function(req, res, next) {
   next();
 });
 
-app.set('port', process.env.PORT || 5000);
-
-app.listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+app.listen(PORT, function () {
+  console.log(`Express server listening on port ${PORT}`);
 });
