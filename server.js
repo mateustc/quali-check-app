@@ -1,16 +1,12 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './src/app/app.module';
-
 const express = require('express');
+const path = require('path');
 const app = express();
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 5000;
 
-enableProdMode();
+app.use(express.static(path.join(__dirname, 'src/assets')));
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'src', 'index.html'));
+});
 
-app.listen(PORT, () =>
-  console.log(`Application is listening on port ${PORT}!`)
-);
+app.listen(PORT);
