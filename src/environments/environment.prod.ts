@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  base_uri: 'http://supply-cube.vps-kinghost.net:3000/api/v1',
+  base_uri: 'https://supply-cube.vps-kinghost.net/api/v1',
   firebase: {
     apiKey: 'YOUR_API_KEY',
     authDomain: 'smartmedpwa.firebaseapp.com',
