@@ -6,7 +6,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --disable-host-check",
+    "start": "node server.js",
     "start:hmg": "ng serve --disable-host-check",
     "build": "ng build --prod",
     "test": "ng test",
